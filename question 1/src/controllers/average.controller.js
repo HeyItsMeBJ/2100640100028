@@ -1,6 +1,3 @@
-
-
-
 const storedNumbers = [];
 
 const validateInputId = async (req, res, next) => {
@@ -30,21 +27,22 @@ const fetchNumbers = async (req, res, next) => {
     if (numberid == "p") {
       resp = await fetch(`http://20.244.56.144/test/primes`, {
         method: "GET",
-      })
+      });
     } else if (numberid == "f") {
       resp = await fetch(`http://20.244.56.144/test/fibo`, {
         method: "GET",
-      })
+      });
     } else if (numberid == "e") {
       resp = await fetch(`http://20.244.56.144/test/even`, {
         method: "GET",
-      })
+      });
     } else if (numberid == "r") {
       resp = await fetch(`http://20.244.56.144/test/rand`, {
         method: "GET",
-      })
+      });
     }
     console.log(resp);
+    if (resp.status != 401) storedNumbers = [...resp.numbers, ...storedNumbers];
 
     // if (!resp.status!=401) return res.status(500).json({ error: "Error fetching numbers" });
     next();
