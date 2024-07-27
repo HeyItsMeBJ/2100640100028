@@ -19,7 +19,7 @@ app.use(cookieParser());
 app.use(
   "/numbers/:numberid",
 
-  // auth,
+  auth,
   validateInputId,
   fetchNumbers,
   calculateAverage
