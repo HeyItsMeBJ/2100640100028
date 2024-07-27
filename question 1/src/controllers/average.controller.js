@@ -46,7 +46,7 @@ const fetchNumbers = async (req, res, next) => {
     }
     console.log(resp);
 
-    if (!resp.status!=401) return res.status(500).json({ error: "Error fetching numbers" });
+    // if (!resp.status!=401) return res.status(500).json({ error: "Error fetching numbers" });
     next();
   } catch (error) {
     console.error("Error fetching numbers:", error);
