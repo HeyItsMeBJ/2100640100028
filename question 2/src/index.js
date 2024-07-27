@@ -2,11 +2,8 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { auth } from "./middlewares/auth.js";
-import {
-  calculateAverage,
-  fetchNumbers,
-  validateInputId,
-} from "./controllers/average.controller.js";
+
+import { getProduct, getProducts } from "./controllers/product.js";
 
 const app = express();
 app.use(cors());
@@ -17,19 +14,24 @@ app.use(cookieParser());
 
 
 app.use(
-  "/numbers/:numberid",
+  "companies/:companyname/categories/:catoryname/products",
 
-  // auth,
-  validateInputId,
-  fetchNumbers,
-  calculateAverage
+  auth,
+  getProducts
+);
+
+app.use(
+  "products/:productid",
+
+  auth,
+  getProduct
 );
 
 app.listen(3000, () => {
   console.log("server is started at http://localhost:3000");
 });
-
-// {
+// "http://20.244.56.144/test/"
+// { 
 //   "companyName": "Hindustan College of Science & Technology",
 //   "clientID": "af9a2575-70a6-41dc-adf9-8b236d168de9",
 //   "clientSecret": "QCBhYVOSYPRebSNE",
