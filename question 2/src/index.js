@@ -13,19 +13,18 @@ app.use(express.static("public"));
 app.use(cookieParser());
 
 
-app.use(
-  "companies/:companyname/categories/:catoryname/products",
-
+app.get(
+  "/companies/:companyname/categories/:catoryname/products",
   auth,
   getProducts
 );
 
-app.use(
-  "products/:productid",
-
-  auth,
+app.get(
+  "/products/:productid",
+  
   getProduct
 );
+
 
 app.listen(3000, () => {
   console.log("server is started at http://localhost:3000");
